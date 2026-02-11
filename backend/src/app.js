@@ -5,6 +5,7 @@ import {connectDB} from './db/db.js';
 import connectToSocket from './controllers/SocketManager.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import userRoutes from './routes/user.routes.js';
 
 
 dotenv.config();
@@ -21,10 +22,9 @@ app.use(express.urlencoded({limit:'40kb' , extended:true}));
 
 
 
+app.use("/api/v1/users",userRoutes);
 
-app.get("/home",(req,res)=>{
-     return res.json("Hello World");
-});
+
 
 const start = async () =>{
      await connectDB();
